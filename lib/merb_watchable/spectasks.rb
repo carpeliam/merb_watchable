@@ -20,6 +20,16 @@ namespace :slices do
         t.spec_files = Dir["#{slice_root}/spec/**/*_spec.rb"].sort
       end
 
+      desc "Run all lib specs, run a spec for a specific class with LIB=MyLib"
+      Spec::Rake::SpecTask.new('lib') do |t|
+        t.spec_opts = ["--format", "specdoc", "--colour"]
+        if(ENV['LIB'])
+          t.spec_files = Dir["#{slice_root}/spec/lib/**/#{ENV['LIB']}_spec.rb"].sort
+        else
+          t.spec_files = Dir["#{slice_root}/spec/lib/**/*_spec.rb"].sort
+        end
+      end
+
       desc "Run all model specs, run a spec for a specific Model with MODEL=MyModel"
       Spec::Rake::SpecTask.new('model') do |t|
         t.spec_opts = ["--format", "specdoc", "--colour"]

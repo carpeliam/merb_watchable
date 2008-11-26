@@ -11,20 +11,22 @@ Merb::Plugins.config[:merb_slices][:search_path]   = File.join(File.dirname(__FI
 require Merb::Plugins.config[:merb_slices][:search_path]
 
 # Define classes to be used in testing.
-class User
-  include DataMapper::Resource
-  property :id, Serial
-  
-  def email
-    'liam@carpeliam.com'
+Merb::BootLoader.before_app_loads do
+  class User
+    include DataMapper::Resource
+    property :id, Serial
+    
+    def email
+      'liam@carpeliam.com'
+    end
   end
-end
 
-class WatchedModel
-  include DataMapper::Resource
-  property :id, Serial
-  property :title, String
-  is :watchable, :label => :title
+  class WatchedModel
+    include DataMapper::Resource
+    property :id, Serial
+    property :title, String
+    is :watchable, :label => :title
+  end
 end
 
 # Using Merb.root below makes sure that the correct root is set for

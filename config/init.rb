@@ -21,7 +21,7 @@
 # code and views.
 #
 
-dependency "merb-mailer", "1.0.2"
+dependency "merb-mailer", "1.0.3"
 dependency "dm-core", "0.9.7"
 use_orm :datamapper
 
