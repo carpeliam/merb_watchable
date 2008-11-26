@@ -10,6 +10,23 @@ Merb::Plugins.config[:merb_slices][:search_path]   = File.join(File.dirname(__FI
 # Require merb_watchable.rb explicitly so any dependencies are loaded
 require Merb::Plugins.config[:merb_slices][:search_path]
 
+# Define classes to be used in testing.
+class User
+  include DataMapper::Resource
+  property :id, Serial
+  
+  def email
+    'liam@carpeliam.com'
+  end
+end
+
+class WatchedModel
+  include DataMapper::Resource
+  property :id, Serial
+  property :title, String
+  is :watchable, :label => :title
+end
+
 # Using Merb.root below makes sure that the correct root is set for
 # - testing standalone, without being installed as a gem and no host application
 # - testing from within the host application; its root will be used

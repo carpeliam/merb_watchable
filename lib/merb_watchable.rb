@@ -5,13 +5,15 @@ if defined?(Merb::Plugins)
   load_dependency 'merb-slices'
   Merb::Plugins.add_rakefiles "merb_watchable/merbtasks", "merb_watchable/slicetasks", "merb_watchable/spectasks"
   
-  require 'dm_watchable'
+  require 'dm-core'
+  require 'dm'/'watch'
+  require 'dm'/'dm_watchable'
   
   # Include Watchable in DataMapper::Resource
   module DataMapper
     module Resource
       module ClassMethods
-        include DataMapper::Is::Watchable
+        include MerbWatchable::DataMapper::Is::Watchable
       end # module ClassMethods
     end # module Resource
   end # module DataMapper

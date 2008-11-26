@@ -21,8 +21,9 @@
 # code and views.
 #
 
-dependency "merb-mailer", "1.0.1"
+dependency "merb-mailer", "1.0.2"
 dependency "dm-core", "0.9.7"
+use_orm :datamapper
 
 #ActionMailer::Base.smtp_settings = {
 #  :address => "mail.packetswitcher.net",
@@ -54,15 +55,10 @@ Merb::Config.use do |c|
 end
 
 Merb::BootLoader.before_app_loads do
+  Merb::Slices::config[:merb_watchable][:user_class] = 'User'
   Merb::Slices::config[:merb_watchable][:sender] = 'bam@bam.com'
+  Merb::Mailer.delivery_method = :test_send
 end
 
 Merb::BootLoader.after_app_loads do
-  Merb::Mailer.config = {
-    :host   => 'mail.packetswitcher.net',
-    :user   => 'outbound@vliconcepts.com',
-    :pass   => 'vli14423',
-    :auth   => :login,
-    :domain => "packetswitcher.net"
-  }
 end
