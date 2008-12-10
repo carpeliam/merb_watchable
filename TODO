@@ -1,15 +1,10 @@
 TODO:
 
-- Fix MerbWatchable.description and MerbWatchable.version
-- Fix LICENSE with your name
-- Fix Rakefile with your name and contact info
-- Add your code to lib/merb_watchable.rb
-- Add your Merb rake tasks to lib/merb_watchable/merbtasks.rb
+- Write a suitable TODO
+- Add functionality for watching child elements
+- Figure out why I'm getting two emails instead of one after updating
+- Add email customization
+- Add different methods of notification in addition to email, maybe via
+  merb-messenger
 
-Remove anything that you don't need:
 
-- app/controllers/main.rb MerbWatchable::Main controller
-- app/views/layout/merb_watchable.html.erb
-- spec/controllers/main_spec.rb controller specs
-- public/* any public files
-- stubs/* any stub files

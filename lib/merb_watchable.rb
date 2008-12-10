@@ -2,7 +2,7 @@ if defined?(Merb::Plugins)
 
   $:.unshift File.dirname(__FILE__)
 
-  load_dependency 'merb-slices'
+  dependency 'merb-slices', :immediate => true
   Merb::Plugins.add_rakefiles "merb_watchable/merbtasks", "merb_watchable/slicetasks", "merb_watchable/spectasks"
   
   require 'dm-core'
@@ -65,12 +65,14 @@ if defined?(Merb::Plugins)
     # @note prefix your named routes with :merb_watchable_
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
+      # no routes for this slice.
+    
       # example of a named route
-      scope.match('/index(.:format)').to(:controller => 'main', :action => 'index').name(:index)
+      # scope.match('/index(.:format)').to(:controller => 'main', :action => 'index').name(:index)
       # the slice is mounted at /merb_watchable - note that it comes before default_routes
-      scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
+      # scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
       # enable slice-level default routes by default
-      scope.default_routes
+      # scope.default_routes
     end
     
   end
@@ -87,7 +89,8 @@ if defined?(Merb::Plugins)
   # Any component path that hasn't been set will default to MerbWatchable.root
   #
   # Or just call setup_default_structure! to setup a basic Merb MVC structure.
-  MerbWatchable.setup_default_structure!
+  MerbWatchable.push_app_path(:lib, Merb.root / "lib")
+  #MerbWatchable.setup_default_structure!
   
   # Add dependencies for other MerbWatchable classes below. Example:
   # dependency "merb_watchable/other"
