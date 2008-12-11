@@ -6,5 +6,4 @@ TODO:
 - Add email customization
 - Add different methods of notification in addition to email, maybe via
   merb-messenger
-
-
+- add methods to User, like #watch(watchable) and is_watching?(watchable)
