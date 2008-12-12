@@ -34,3 +34,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<merb-mailer>, [">= 1.0.3"])
   end
 end
+
